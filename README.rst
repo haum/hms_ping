@@ -18,7 +18,7 @@ Create a Python 3 virtualenv and install dependencies::
 
 Then start the bot when you are in the repository root folder::
 
-    $ python help.py
+    $ python pong.py
 
 License
 -------
