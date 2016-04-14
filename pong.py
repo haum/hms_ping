@@ -27,7 +27,7 @@ def callback(ch, method, properties, body):
         channel.basic_publish(
             exchange='haum',
             routing_key='irc_debug',
-            body=json.dumps({'privmsg': 'pong'}))
+            body=json.dumps({'privmsg': 'Quoi !?! >_<'}))
 
 
 channel.basic_consume(callback,
