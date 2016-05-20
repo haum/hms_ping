@@ -24,10 +24,11 @@ def callback(ch, method, properties, body):
     print(result)
 
     if result['command'] == 'ping':
+        print('SENDING PING')
         channel.basic_publish(
             exchange='haum',
-            routing_key='irc_debug',
-            body=json.dumps({'privmsg': 'pong'}))
+            routing_key='ping',
+            body=json.dumps({'source': 'irc', 'type': 'request'}))
 
 
 channel.basic_consume(callback,
