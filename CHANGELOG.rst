@@ -7,6 +7,7 @@ This project adheres to `Semantic Versioning <http://semver.org/>`__.
 [Unreleased]
 ------------
 
+- Added CLI ping command
 
 [1.0] - 2016-05-24
 ------------------
