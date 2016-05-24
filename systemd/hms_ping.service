@@ -1,0 +1,14 @@
+[Unit]
+Description=HAUM's ping microservice
+After=mutli-user.target
+Requires=multi-user.target
+
+[Service]
+Type=simple
+User=hms_ping
+ExecStart=/home/hms_ping/hms_ping/systemd/run.sh
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
