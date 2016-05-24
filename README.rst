@@ -1,8 +1,9 @@
 hms_ping, simple ping micro-service
-########
+###################################
 
-This service is, ATM, listenning for IRC commands and send a "Quoi !?! >_<" PRIVMSG if
-the command is a ping.
+This service is responsible of sending a ping command to all microservices when
+a ping request is published over the different user interfaces (IRC, CLI, HTTP,
+…).
 
 The code is simple and can be used as an example of listenning/publishing
 service for making other ones.
@@ -18,7 +19,7 @@ Create a Python 3 virtualenv and install dependencies::
 
 Then start the bot when you are in the repository root folder::
 
-    $ python pong.py
+    $ python run.py
 
 License
 -------
