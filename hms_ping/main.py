@@ -23,7 +23,11 @@ def main():
             # If we receive !ping from IRC we broadcast a PING request
             if message['command'] == 'ping':
 
-                resp = {'source': 'irc', 'type': 'request'}
+                resp = {
+                    'source': 'irc',
+                    'type': 'request',
+                    'nick': message['nick']
+                }
 
                 get_logger().info('Sending ping {}'.format(resp))
                 client.publish(routing_key='ping', dct=resp)
