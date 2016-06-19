@@ -1,0 +1,33 @@
+#!/bin/env python3
+
+import json
+import logging
+
+from hms_base.client import Client
+from hms_base.decorators import topic
+
+def get_logger():
+    return logging.getLogger(__name__)
+
+
+client = Client('hms_ping_test', 'haum', ['ping'], enable_ping=False)
+
+
+@topic('ping')
+def callback(ch, topic, dct):
+    if dct['type'] == 'answer' and dct['source']['source'] == 'cli':
+        print('Le service `{}` a répondu présent !'.format(dct['name']))
+
+
+client.listeners.append(callback)
+client.connect()
+
+print('Envoi d’une demande de ping…')
+client.publish('ping', {'type': 'request', 'source': 'cli'})
+
+try:
+    print('Attente des réponses… (^C pour terminer)')
+    client.start_consuming()
+except KeyboardInterrupt:
+    client.stop_consuming()
+    client.disconnect()
