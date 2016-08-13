@@ -7,13 +7,16 @@ This project adheres to `Semantic Versioning <http://semver.org/>`__.
 [Unreleased]
 ------------
 
+
 [2.0] - 2016-08-13
 ------------------
 
+- Converted old run.py and ping.py to global executables
+- Using package ``hms_base`` instead of copying its source code
+- Using ``setup.py`` packaging for easier installation, dependency management
+  and use
 - Added systemd unit
 - Added CLI ping command
-- Converted old run.py and ping.py to global executables
-- Using setup.py instead of requirements.txt
 
 [1.0] - 2016-05-24
 ------------------

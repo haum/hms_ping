@@ -5,6 +5,7 @@ import coloredlogs
 from hms_base.client import Client
 from hms_base.decorators import topic
 
+
 def get_logger():
     return logging.getLogger(__name__)
 

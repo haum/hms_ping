@@ -5,7 +5,7 @@ This service is responsible of sending a ping command to all microservices when
 a ping request is published over the different user interfaces (IRC, CLI, HTTP,
 …).
 
-The code is simple and can be used as an example of listenning/publishing
+The code is simple and can be used as an example of listening/publishing
 service for making other ones.
 
 Using
