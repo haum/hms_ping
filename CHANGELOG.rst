@@ -9,6 +9,7 @@ This project adheres to `Semantic Versioning <http://semver.org/>`__.
 
 - Added systemd unit
 - Added CLI ping command
+- Converted old run.py and ping.py to global executables
 
 [1.0] - 2016-05-24
 ------------------
