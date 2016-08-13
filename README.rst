@@ -11,18 +11,22 @@ service for making other ones.
 Using
 -----
 
-Create a Python 3 virtualenv and install dependencies::
+Create a Python 3 virtualenv and the package::
 
     $ virtualenv -ppython3 venv
     $ source venv/bin/activate
-    (venv) $ pip install -r requirements.txt
+    (venv) $ pip install .
 
-Then start the bot when you are in the repository root folder::
+You can then start the server inside the virtualenv::
 
-    $ python run.py
+    (venv) $ hms_ping
+
+And call the CLI tool too::
+
+    (venv) $ hms_ping_send
 
 License
 -------
 
 This project is brought to you under MIT license. For further information,
-please read the provided LICENSE file.
+please read the provided ``LICENSE.txt`` file.
