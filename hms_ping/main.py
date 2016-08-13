@@ -1,10 +1,9 @@
-import json
 import logging
 
 import coloredlogs
 
-from hms_ping.rabbit import RabbitClient
-
+from hms_base.client import Client
+from hms_base.decorators import topic
 
 def get_logger():
     return logging.getLogger(__name__)
@@ -13,33 +12,35 @@ def get_logger():
 def main():
     coloredlogs.install(level='INFO')
 
-    client = RabbitClient(exchange='haum', routing_keys=['irc_command', 'ping'])
+    client = Client('hms_ping', 'haum', topics=['irc_command'])
 
-    def callback(ch, method, properties, body):
-        message = json.loads(body.decode('utf-8'))
+    @topic('irc_command')
+    def irc_callback(client, topic, dct):
+        """Callback used when we receive a !ping commad from IRC.
 
-        if method.routing_key == 'irc_command':
+        When called, we broadcast a PING request specifying that the request
+        comes from IRC and user's nickname in order to send him all the ping
+        responses and avoid spamming main IRC channel.
 
-            # If we receive !ping from IRC we broadcast a PING request
-            if message['command'] == 'ping':
+        """
+        if dct['command'] == 'ping':
 
-                resp = {
-                    'source': 'irc',
-                    'type': 'request',
-                    'nick': message['nick']
-                }
+            ping_request = {
+                'source': 'irc',
+                'type': 'request',
+                'nick': dct['nick']
+            }
 
-                get_logger().info('Sending ping {}'.format(resp))
-                client.publish(routing_key='ping', dct=resp)
+            get_logger().info('Sending ping {}'.format(ping_request))
+            client.publish('ping', dct=ping_request)
 
-    client.listeners.append(callback)
-
-    client.connect('localhost')
+    client.listeners.append(irc_callback)
+    client.connect()
 
     try:
-        client.consume()
+        client.start_consuming()
     except KeyboardInterrupt:
         get_logger().critical('Got a KeyboardInterrupt in my face!')
 
-    client.stop_consume()
+    client.stop_consuming()
     client.disconnect()
