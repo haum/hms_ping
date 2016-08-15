@@ -9,7 +9,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='hms_ping',
-    version='2.0',
+    version='2.1',
     packages=['hms_ping'],
     scripts=['bin/hms_ping', 'bin/hms_ping_send'],
 
@@ -32,5 +32,5 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
 
-    install_requires=['pika', 'hms_base>1.0,<2', 'coloredlogs']
+    install_requires=['pika', 'hms_base>=2.0,<3', 'coloredlogs']
 )
