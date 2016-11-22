@@ -24,13 +24,13 @@ def main():
 
 
     try:
-        print('Envoi d’une demande de ping…')
+        print('Envoi d’une demande de ping...')
 
         # We send a ping request and specify the source is CLI so
         # we can then catch answers from our CLI request.
         client.publish('ping', {'type': 'request', 'source': 'cli'})
 
-        print('Attente des réponses… (^C pour terminer)')
+        print('Attente des réponses... (^C pour terminer)')
 
         # Infinite wait for answers till user decides to exit.
         # TODO: start to consume before in a thread and join here to be sure to not miss any answer.
